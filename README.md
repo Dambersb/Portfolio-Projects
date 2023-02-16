@@ -11,7 +11,7 @@ Cyclistic (fictional company) is a bike-sharing company based in Chicago, Divvy,
 Data source: [Divvy Tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)  
 The data has been made available by Motivate International Inc. under this [license].(https://ride.divvybikes.com/data-license-agreement)
 
-**B. Background information**  
+**Background information**  
 
 Cyclistic offers a wide range of bike-share program that features over 5,800 bicycles spread over its 600 docking stations. It is found that most of the users ride for liesure and about 30% use them to commute to work each day. Until now, Cyclistic’s marketing strategy relied on building general awareness and appealing to broad consumer segments. Cycistics offers different pricing plans such as single-ride passes, full-day passes, and annual memberships. Customers who purchase single-ride or full-day passes are referred to as casual riders and customers who purchase annual memberships are referred as Cyclistic members.  
   
