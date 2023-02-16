@@ -21,7 +21,7 @@ be key to future growth. Rather than creating a marketing campaign that targets 
 **Business Task**  
 Of late, the company finance analyst concluded that annual memnbers are much more profitable than casual riders and believe that maximizing the number of annual members will be a key to company's future growth. We will follow the **Ask, Prepare, Process, Analyse, Share, Act** process of data analysis to solve the business problem.
 
-#ASK Phase#  
+# ASK Phase #  
 Key stakeholders for this project:  
 * Lily Moreno - Director of Marketing
 * Cyclistic Marketing Analystics team
@@ -32,10 +32,10 @@ Key questions to ask:
 2. Why would casual riders buy Cyclistic annual memberships?
 
 
-#Preparing data for analysis#
+# Preparing data for analysis #
 First off all I have downloaded the files from [Divvy Tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html) in excel format. Am using R to clean my data. We will be using the following environments to analyze our data:  
 * R to clean the data
 * Tableau for visualization.
 
-
+* Installing packages for data cleaning in RStudio *
 
