@@ -7,6 +7,6 @@ Note: Please refer to the files in this repository to find all the resources use
 ## Background  
 
 Company:
-Cyclistic (fictional), bike-sharing company in Chicago
-mocking a real-world bike-sharing system in Chicago, Divvy, operated by Lyft
-Data source: [link](https://divvy-tripdata.s3.amazonaws.com/index.html))Divvy Public Data
+Cyclistic (fictional), bike-sharing company in Chicago  
+mocking a real-world bike-sharing system in Chicago, Divvy, operated by Lyft  
+Data source: [Divvy Tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)
