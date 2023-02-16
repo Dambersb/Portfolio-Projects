@@ -6,7 +6,7 @@ Note: Please refer to the files in this repository to find all the resources use
 ***  
 ## Introduction:
 
-**A. Company:**  
+**About the Data:**  
 Cyclistic (fictional company) is a bike-sharing company based in Chicago, Divvy, operated by Lyft.  
 Data source: [Divvy Tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)  
 The data has been made available by Motivate International Inc. under this [license].(https://ride.divvybikes.com/data-license-agreement)
@@ -18,8 +18,8 @@ Cyclistic offers a wide range of bike-share program that features over 5,800 bic
 Of late, Cyclistics concluded that annual members are much more profitbale than casual riders and believe that maximizing the number of annual members will be a key to company's future growth. Although the pricing flexibility helps Cyclistic attract more customers, Moreno believes that maximizing the number of annual members will
 be key to future growth. Rather than creating a marketing campaign that targets all-new customers, Moreno believes there is a very good chance to convert casual riders into members. She notes that casual riders are already aware of the Cyclistic program and have chosen Cyclistic for their mobility needs.  
   
-**Business Task**
-Of late, the company finance analyst concluded that annual memnbers are much more profitable than casual riders and believe that maximizing the number of annual members will be a key to company's future growth. Lets follow the **Ask, Prepare, Process, Analyse, Share, Act** process of data analysis to solve the business problem.
+**Business Task**  
+Of late, the company finance analyst concluded that annual memnbers are much more profitable than casual riders and believe that maximizing the number of annual members will be a key to company's future growth. We will follow the **Ask, Prepare, Process, Analyse, Share, Act** process of data analysis to solve the business problem.
 
 **ASK**  
 Key stakeholders for this project:  
@@ -29,4 +29,8 @@ Key stakeholders for this project:
 
 Key questions to ask:
 1. How do annual members and casual riders use Cyclistic bikes differently?
+2. Why would casual riders buy Cyclistic annual memberships?
+
+
+
 
