@@ -37,6 +37,6 @@ First off all I have downloaded the files from [Divvy Tripdata](https://divvy-tr
 * R to clean the data
 * Tableau for visualization.
 
-## Installing packages for data cleaning in RStudio ##
+** Installing packages for data cleaning in RStudio **
 
 
