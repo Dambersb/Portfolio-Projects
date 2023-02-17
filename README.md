@@ -37,5 +37,29 @@ Twelve months data from March 2022 to February 2023 have been downloaded from [D
 * Tools to be used for cleaning data: R
 * Tool for visualization: R & Tableau
 
+# Installing libraries in R
+# tidyverse for data wrangling, lubridate for formatting date and ggplot2 for visualization.
+library(tidyverse) 
+library(lubridate) 
+library(ggplot2)
+library(readr)
+
+# Displaying and setting working directory
+getwd()
+setwd("C:\\Users\\dambe\\Desktop\\Portfolio Project")
+
+#Loading dataset for combining
+m1<-read.csv("1_March_2022.csv")
+m2<-read.csv("2_April_2022.csv")
+m3<-read.csv("3_May_2022.csv")
+m4<-read.csv("4_June_2022.csv")
+m5<-read.csv("5_July_2022.csv")
+m6<-read.csv("6_August_2022.csv")
+m7<-read.csv("7_Sept_2022.csv")
+m8<-read.csv("8_Oct_2022.csv")
+m9<-read.csv("9_Nov_2022.csv")
+m10<-read.csv("10_Dec_2022.csv")
+m11<-read.csv("11_Jan_2023.csv")
+m12<-read.csv("12_Feb_2023.csv")
 
 
