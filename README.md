@@ -36,21 +36,22 @@ Key questions to ask:
 Twelve months data from March 2022 to February 2023 have been downloaded from [Divvy Tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html). The data is well organized in excel format. 
 * Tools to be used for cleaning data: R
 * Tool for visualization: R & Tableau
-```{r}
 # Installing libraries in R
+```{r}
 # tidyverse for data wrangling, lubridate for formatting date and ggplot2 for visualization.
 library(tidyverse) 
 library(lubridate) 
 library(ggplot2)
 library(readr)
 ```
+# Displaying and setting-up working directory
 ```{r}
-# Displaying and setting working directory
 getwd()
 setwd("C:\\Users\\dambe\\Desktop\\Portfolio Project")
 ```
+
+# Loading csv files to RStudio
 ```{r}
-#Loading dataset for combining
 m1<-read.csv("1_March_2022.csv")
 m2<-read.csv("2_April_2022.csv")
 m3<-read.csv("3_May_2022.csv")
@@ -63,5 +64,20 @@ m9<-read.csv("9_Nov_2022.csv")
 m10<-read.csv("10_Dec_2022.csv")
 m11<-read.csv("11_Jan_2023.csv")
 m12<-read.csv("12_Feb_2023.csv")
+```
+# Comparing column names of each files.
+```{r}
+colnames(m1)
+colnames(m2)
+colnames(m3)
+colnames(m4)
+colnames(m5)
+colnames(m6)
+colnames(m7)
+colnames(m8)
+colnames(m9)
+colnames(m10)
+colnames(m11)
+colnames(m12)
 ```
 
