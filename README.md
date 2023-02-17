@@ -33,10 +33,9 @@ Key questions to ask:
 
 
 # Preparing data for analysis #
-First off all I have downloaded the files from [Divvy Tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html) in excel format. Am using R to clean my data. We will be using the following environments to analyze our data:  
-* R to clean the data
-* Tableau for visualization.
+Twelve months data from March 2022 to February 2023 have been downloaded from [Divvy Tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html). The data is well organized in excel format. 
+* Tools to be used for cleaning data: R
+* Tool for visualization: R & Tableau
 
-**Installing packages for data cleaning in RStudio**
 
 
