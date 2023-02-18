@@ -21,7 +21,7 @@ be key to future growth. Rather than creating a marketing campaign that targets 
 **Business Task**  
 Of late, the company finance analyst concluded that annual memnbers are much more profitable than casual riders and believe that maximizing the number of annual members will be a key to company's future growth. We will follow the **Ask, Prepare, Process, Analyse, Share, Act** process of data analysis to solve the business problem.
 
-# ASK Phase #  
+## Ask Phase ##  
 Key stakeholders for this project:  
 * Lily Moreno - Director of Marketing
 * Cyclistic Marketing Analystics team
@@ -32,14 +32,13 @@ Key questions to ask:
 2. Why would casual riders buy Cyclistic annual memberships?
 
 
-# Preparing data for analysis #
+## Preparing data for analysis ##
 Twelve months data from March 2022 to February 2023 have been downloaded from [Divvy Tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html). The data is well organized in excel format. 
 * Tools to be used for cleaning data: R
 * Tool for visualization: R & Tableau
-
+Installing libraries in R
+tidyverse for data wrangling, lubridate for formatting date and ggplot2 for visualization.
 ```{r}
-# Installing libraries in R
-# tidyverse for data wrangling, lubridate for formatting date and ggplot2 for visualization.
 library(tidyverse) 
 library(lubridate) 
 library(ggplot2)
@@ -47,15 +46,13 @@ library(dplyr)
 library(janitor)
 library(readr) # used for reading a csv file.
 ```
-
+Displaying and setting-up working directory
 ```{r}
-# Displaying and setting-up working directory
 getwd()
 setwd("C:\\Users\\dambe\\Desktop\\Portfolio Project")
 ```
-
+Loading dataset. I am inserting 'na' where the columns values are empty.
 ```{r}
-# Loading dataset. I am inserting 'na' where the columns values are empty.
 m1<-read.csv("1_March_2022.csv", na="")
 m2<-read.csv("2_April_2022.csv",na="")
 m3<-read.csv("3_May_2022.csv",na="")
