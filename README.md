@@ -66,9 +66,8 @@ m10<-read.csv("10_Dec_2022.csv",na="")
 m11<-read.csv("11_Jan_2023.csv",na="")
 m12<-read.csv("12_Feb_2023.csv",na="")
 ```
-
+Comparing column names of each files before combining them into single dataset.
 ```{r}
-# Comparing column names of each files before combining them into single dataset.
 colnames(m1)
 colnames(m2)
 colnames(m3)
@@ -82,31 +81,31 @@ colnames(m10)
 colnames(m11)
 colnames(m12)
 ```
+Combining multiple datasets to a single large dataset.
 ```{r}
-# combining multiple datasets to a single large dataset.
 combined_trip <- bind_rows(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12);
 View(combined_trip)
 ```
-# Processing data for analysis #
+## Processing data for analysis ##
+Verifying data for consistency
 ```{r}
-#Verify the data for consistency
 head(combined_trip)
 nrow(combined_trip)
 ncol(combined_trip)
 glimpse(combined_trip)
 ```
+Dropping any rows with NA/empty values
 ```{r}
-# Dropping any rows with NA/empty values
 combined_trip2 <- remove_empty(combined_trip, c("rows", "cols"))%>%
   drop_na()
 ```
+Inspecting the the cleaned data 
 ```{r}
-# Inspecting the the cleaned data 
 glimpse(combined_trip2)
 str(combined_trip2)
 ```
+Add columns date, month, day, year and hour of each ride
 ```{r}
-# Add columns date, month, day, year and hour of each ride
 # https://www.statmethods.net/input/dates.html more on date formats in R found at that link
 combined_trip2$Date <- as.Date(combined_trip2$started_at)
 combined_trip2$Month <- format(as.Date(combined_trip2$Date), "%m")
@@ -116,41 +115,35 @@ combined_trip2$Day_of_Week <- format(as.Date(combined_trip2$Date), "%A")
 combined_trip2$Hour <- hour(combined_trip2$started_at)
 combined_trip2$Ride_Length <- difftime(combined_trip2$ended_at,combined_trip2$started_at,units = "min") #calculating ride_length in minutes
 ```
+Inspecting additional columns and structure of column
 ```{r}
-#Inspecting additional columns and structure of column
 head(combined_trip2)
 str(combined_trip2)
 ```
+Convert "ride_length" from Factor to numeric for easy calculations
 ```{r}
-# Convert "ride_length" from Factor to numeric for easy calculations
 combined_trip2$Ride_Length <- as.numeric(as.character(combined_trip2$Ride_Length))
 is.numeric(combined_trip2$Ride_Length)
 str(combined_trip2)
 ```
-
-**Inspecting and removing bad data**
+Inspecting and removing bad data
 ```{r}
-#Checking ride length less than 0
+#Checking ride length less than 0  
 nrow(subset(combined_trip2, Ride_Length<0))
 ```
 ```{r}
-# Removing row with ride_length less than 0.
+# Removing row with ride_length less than 0.  
 combined_trip2 <- combined_trip2[!(combined_trip2$Ride_Length<0),]
 ```
+Checking if any bicycles were used for test/by company for maintenance
 ```{r}
-#Checking if any bicycles were used for test/by company for maintenance
 nrow(subset(combined_trip2,start_station_name == "HQ QR"))
 str(combined_trip2)
 ```
+Removing unwanted columns from the data set
 ```{r}
-#removing unwanted columns from the data set
 combined_trip2 <- subset(combined_trip2, select = -c(started_at, ended_at,start_station_id, end_station_id,start_lat, start_lng,end_lat, end_lng))
 str(combined_trip2)
-```
-
-**Exporting cleaned data set for further analysis**
-```{r}
-write.csv(combined_trip2,"Final_Cleaned_Trip_Data.csv", row.names = TRUE)
 ```
 # Descriptive Analysis #
 *Descriptive analysis on ride_length (all figures in minutes*
@@ -159,4 +152,10 @@ mean(combined_trip2$Ride_Length)
 median(combined_trip2$Ride_Length)  #median ride length
 max(combined_trip2$Ride_Length) #max ride length
 min(combined_trip2$Ride_Length) # shortest ride length
+
+**Exporting cleaned data set for further analysis **
+```{r}
+write.csv(combined_trip2,"Final_Cleaned_Trip_Data.csv", row.names = TRUE)
+```
+
 ```
