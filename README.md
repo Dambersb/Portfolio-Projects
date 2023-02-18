@@ -155,3 +155,11 @@ str(combined_trip2)
 ```{r}
 write.csv(combined_trip2,"Final_Cleaned_Trip_Data.csv", row.names = TRUE)
 ```
+# Descriptive Analysis#
+*Descriptive analysis on ride_length (all figures in minutes)*
+```{r}
+mean(combined_trip2$Ride_Length)
+median(combined_trip2$Ride_Length)  #median ride length
+max(combined_trip2$Ride_Length) #max ride length
+min(combined_trip2$Ride_Length) # shortest ride length
+```
