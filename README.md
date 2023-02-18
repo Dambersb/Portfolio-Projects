@@ -108,3 +108,50 @@ combined_trip2 <- remove_empty(combined_trip, c("rows", "cols"))%>%
 glimpse(combined_trip2)
 str(combined_trip2)
 ```
+```{r}
+# Add columns date, month, day, year and hour of each ride
+# https://www.statmethods.net/input/dates.html more on date formats in R found at that link
+combined_trip2$Date <- as.Date(combined_trip2$started_at)
+combined_trip2$Month <- format(as.Date(combined_trip2$Date), "%m")
+combined_trip2$Day <- format(as.Date(combined_trip2$Date), "%d")
+combined_trip2$Year <- format(as.Date(combined_trip2$Date), "%Y")
+combined_trip2$Day_of_Week <- format(as.Date(combined_trip2$Date), "%A")
+combined_trip2$Hour <- hour(combined_trip2$started_at)
+combined_trip2$Ride_Length <- difftime(combined_trip2$ended_at,combined_trip2$started_at,units = "min") #calculating ride_length in minutes
+```
+```{r}
+#Inspecting additional columns and structure of column
+head(combined_trip2)
+str(combined_trip2)
+```
+```{r}
+# Convert "ride_length" from Factor to numeric for easy calculations
+combined_trip2$Ride_Length <- as.numeric(as.character(combined_trip2$Ride_Length))
+is.numeric(combined_trip2$Ride_Length)
+str(combined_trip2)
+```
+
+**Inspecting and removing bad data and removing it.**
+```{r}
+#Checking ride length less than 0
+nrow(subset(combined_trip2, Ride_Length<0))
+```
+```{r}
+# Removing row with ride_length less than 0.
+combined_trip2 <- combined_trip2[!(combined_trip2$Ride_Length<0),]
+```
+```{r}
+#Checking if any bicycles were used for test/by company for maintenance
+nrow(subset(combined_trip2,start_station_name == "HQ QR"))
+str(combined_trip2)
+```
+```{r}
+#removing unwanted columns from the data set
+combined_trip2 <- subset(combined_trip2, select = -c(started_at, ended_at,start_station_id, end_station_id,start_lat, start_lng,end_lat, end_lng))
+str(combined_trip2)
+```
+
+**Exporting cleaned data set for further analysis**
+```{r}
+write.csv(combined_trip2,"Final_Cleaned_Trip_Data.csv", row.names = TRUE)
+```
