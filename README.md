@@ -152,10 +152,9 @@ mean(combined_trip2$Ride_Length)
 median(combined_trip2$Ride_Length)  #median ride length
 max(combined_trip2$Ride_Length) #max ride length
 min(combined_trip2$Ride_Length) # shortest ride length
+````
 
 **Exporting cleaned data set for further analysis **
 ```{r}
 write.csv(combined_trip2,"Final_Cleaned_Trip_Data.csv", row.names = TRUE)
-```
-
 ```
