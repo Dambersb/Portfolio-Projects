@@ -43,7 +43,9 @@ Twelve months data from March 2022 to February 2023 have been downloaded from [D
 library(tidyverse) 
 library(lubridate) 
 library(ggplot2)
-library(readr)
+library(dplyr)
+library(janitor)
+library(readr) # used for reading a csv file.
 ```
 
 ```{r}
@@ -53,23 +55,23 @@ setwd("C:\\Users\\dambe\\Desktop\\Portfolio Project")
 ```
 
 ```{r}
-# Loading csv files to RStudio
-m1<-read.csv("1_March_2022.csv")
-m2<-read.csv("2_April_2022.csv")
-m3<-read.csv("3_May_2022.csv")
-m4<-read.csv("4_June_2022.csv")
-m5<-read.csv("5_July_2022.csv")
-m6<-read.csv("6_August_2022.csv")
-m7<-read.csv("7_Sept_2022.csv")
-m8<-read.csv("8_Oct_2022.csv")
-m9<-read.csv("9_Nov_2022.csv")
-m10<-read.csv("10_Dec_2022.csv")
-m11<-read.csv("11_Jan_2023.csv")
-m12<-read.csv("12_Feb_2023.csv")
+# Loading dataset. I am inserting 'na' where the columns values are empty.
+m1<-read.csv("1_March_2022.csv", na="")
+m2<-read.csv("2_April_2022.csv",na="")
+m3<-read.csv("3_May_2022.csv",na="")
+m4<-read.csv("4_June_2022.csv",na="")
+m5<-read.csv("5_July_2022.csv",na="")
+m6<-read.csv("6_August_2022.csv",na="")
+m7<-read.csv("7_Sept_2022.csv",na="")
+m8<-read.csv("8_Oct_2022.csv",na="")
+m9<-read.csv("9_Nov_2022.csv",na="")
+m10<-read.csv("10_Dec_2022.csv",na="")
+m11<-read.csv("11_Jan_2023.csv",na="")
+m12<-read.csv("12_Feb_2023.csv",na="")
 ```
 
 ```{r}
-# Comparing column names of each files.
+# Comparing column names of each files before combining them into single dataset.
 colnames(m1)
 colnames(m2)
 colnames(m3)
@@ -83,4 +85,26 @@ colnames(m10)
 colnames(m11)
 colnames(m12)
 ```
-
+```{r}
+# combining multiple datasets to a single large dataset.
+combined_trip <- bind_rows(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12);
+View(combined_trip)
+```
+# Processing data for analysis #
+```{r}
+#Verify the data for consistency
+head(combined_trip)
+nrow(combined_trip)
+ncol(combined_trip)
+glimpse(combined_trip)
+```
+```{r}
+# Dropping any rows with NA/empty values
+combined_trip2 <- remove_empty(combined_trip, c("rows", "cols"))%>%
+  drop_na()
+```
+```{r}
+# Inspecting the the cleaned data 
+glimpse(combined_trip2)
+str(combined_trip2)
+```
