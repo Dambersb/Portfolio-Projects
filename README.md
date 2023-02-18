@@ -131,7 +131,7 @@ is.numeric(combined_trip2$Ride_Length)
 str(combined_trip2)
 ```
 
-**Inspecting and removing bad data and removing it.**
+**Inspecting and removing bad data**
 ```{r}
 #Checking ride length less than 0
 nrow(subset(combined_trip2, Ride_Length<0))
