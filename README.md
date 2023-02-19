@@ -154,7 +154,7 @@ max(combined_trip2$Ride_Length) #max ride length
 min(combined_trip2$Ride_Length) # shortest ride length
 ````
 
-**Compare members and casual users by aggregate**
+Compare members and casual users by aggregate
 ```{r}
 aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = mean)
 aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = median)
@@ -162,7 +162,7 @@ aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = max)
 aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = min)
 ```
 
-**Order days of week in sequence **
+Ordering days of week in sequence
 ```{r}
 combined_trip2$Day_of_Week <- ordered(combined_trip2$Day_of_Week, 
                                        levels=c("Sunday", "Monday", "Tuesday", 
@@ -170,14 +170,14 @@ combined_trip2$Day_of_Week <- ordered(combined_trip2$Day_of_Week,
                                                 "Saturday")) 
 ```
 
-**Average ride time by each day for members vs casual users**
+Average ride time by each day for members vs casual users
 
 ```{r}
 aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual + combined_trip2$Day_of_Week, FUN = mean)
 ```
 
-#Sharing/Visualization#
-**analyze ridership data by membership type and weekday**
+## Sharing/Visualization ##
+Analyze ridership data by membership type and weekday
 ```{r}
 combined_trip2 %>%  
   group_by(member_casual, Day_of_Week) %>% 
