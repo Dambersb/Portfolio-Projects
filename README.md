@@ -209,6 +209,8 @@ combined_trip2 %>%
 ![Sheet 1](https://user-images.githubusercontent.com/113871264/219971095-a48a4456-19d4-482a-b9b2-2129dbb023ce.png)
 While the bike rides remain constant with throughout the week for members, casual riders tend to use the bikes more on the weekends.
 
+![Sheet 2](https://user-images.githubusercontent.com/113871264/219973678-3db5f67f-aeeb-4f9b-a6a7-007ee75382b2.png)  
+Comparatively, user tend to ride the bikes for longer duration in the summer months compared to winter months.  
 ## Final conclusions: ##
 1.	Casual riders tend to use bikes for longer duration during the weekends.
 2.	Most riders prefers using classic bikes and electric bikes rather than docked bikes.
