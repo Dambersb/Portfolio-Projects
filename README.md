@@ -117,9 +117,13 @@ combined_trip2$Ride_Length <- difftime(combined_trip2$ended_at,combined_trip2$st
 ```
 Inspecting additional columns and structure of column
 ```{r}
-head(combined_trip2)
 str(combined_trip2)
 ```
+Removing unwanted columns from the data set
+```{r}
+combined_trip2 <- subset(combined_trip2, select = -c(started_at, ended_at,start_station_id, end_station_id,start_lat, start_lng,end_lat, end_lng))
+str(combined_trip2)
+``` 
 Convert "ride_length" from Factor to numeric for easy calculations
 ```{r}
 combined_trip2$Ride_Length <- as.numeric(as.character(combined_trip2$Ride_Length))
@@ -140,12 +144,8 @@ Checking if any bicycles were used for test/by company for maintenance
 nrow(subset(combined_trip2,start_station_name == "HQ QR"))
 str(combined_trip2)
 ```
-Removing unwanted columns from the data set
-```{r}
-combined_trip2 <- subset(combined_trip2, select = -c(started_at, ended_at,start_station_id, end_station_id,start_lat, start_lng,end_lat, end_lng))
-str(combined_trip2)
-```
-# Descriptive Analysis #
+
+## Descriptive Analysis ##
 *Descriptive analysis on ride_length (all figures in minutes*
 ```{r}
 mean(combined_trip2$Ride_Length)
