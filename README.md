@@ -124,7 +124,7 @@ Removing unwanted columns from the data set
 combined_trip2 <- subset(combined_trip2, select = -c(started_at, ended_at,start_station_id, end_station_id,start_lat, start_lng,end_lat, end_lng))
 str(combined_trip2)
 ``` 
-Convert "ride_length" from Factor to numeric for easy calculations
+Convert "ride_length" from factor to numeric for easy calculations
 ```{r}
 combined_trip2$Ride_Length <- as.numeric(as.character(combined_trip2$Ride_Length))
 is.numeric(combined_trip2$Ride_Length)
@@ -154,7 +154,41 @@ max(combined_trip2$Ride_Length) #max ride length
 min(combined_trip2$Ride_Length) # shortest ride length
 ````
 
-**Exporting cleaned data set for further analysis **
+**Compare members and casual users by aggregate**
+```{r}
+aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = mean)
+aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = median)
+aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = max)
+aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = min)
+```
+
+**Order days of week in sequence **
+```{r}
+combined_trip2$Day_of_Week <- ordered(combined_trip2$Day_of_Week, 
+                                       levels=c("Sunday", "Monday", "Tuesday", 
+                                                "Wednesday", "Thursday", "Friday", 
+                                                "Saturday")) 
+```
+
+**Average ride time by each day for members vs casual users**
+
+```{r}
+aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual + combined_trip2$Day_of_Week, FUN = mean)
+```
+
+#Sharing/Visualization#
+**analyze ridership data by membership type and weekday**
+```{r}
+combined_trip2 %>%  
+  group_by(member_casual, Day_of_Week) %>% 
+  summarise(avg_trip_time_in_min = mean(Ride_Length)) %>%
+  ggplot(aes(x = Day_of_Week, y = avg_trip_time_in_min, fill = member_casual)) +
+  geom_col(width=0.5, position = position_dodge(width=0.5)) + 
+  labs(title ="Average trip duration by customer type Vs. Day of the week")
+```
+
+## Exporting cleaned data set for further analysis ##
 ```{r}
 write.csv(combined_trip2,"Final_Cleaned_Trip_Data.csv", row.names = TRUE)
-```
+
+``` 
