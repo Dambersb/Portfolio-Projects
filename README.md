@@ -206,6 +206,10 @@ combined_trip2 %>%
   As per this analysis, maximum of the riders prefer using using classic or eletric bikes compared to docked bikes.
   
   
+![Sheet 1](https://user-images.githubusercontent.com/113871264/219971095-a48a4456-19d4-482a-b9b2-2129dbb023ce.png)
+While the bike rides remain constant with throughout the week for members, casual riders tend to use the bikes more on the weekends.
+
+  
 ## Exporting cleaned data set for further analysis ##
 ```{r}
 write.csv(combined_trip2,"Final_Cleaned_Trip_Data.csv", row.names = TRUE)
