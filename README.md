@@ -206,10 +206,12 @@ combined_trip2 %>%
   As per this analysis, maximum of the riders prefer using using classic or eletric bikes compared to docked bikes.
   
   
-![Sheet 1](https://user-images.githubusercontent.com/113871264/219971095-a48a4456-19d4-482a-b9b2-2129dbb023ce.png)
+![Sheet 1](https://user-images.githubusercontent.com/113871264/219971095-a48a4456-19d4-482a-b9b2-2129dbb023ce.png)  
+*Created using Tableau*
 While the bike rides remain constant with throughout the week for members, casual riders tend to use the bikes more on the weekends.
 
 ![Sheet 2](https://user-images.githubusercontent.com/113871264/219973678-3db5f67f-aeeb-4f9b-a6a7-007ee75382b2.png)  
+*Created using Tableau *
 Comparatively, user tend to ride the bikes for longer duration in the summer months compared to winter months.  
 ## Final conclusions: ##
 1.	Casual riders tend to use bikes for longer duration during the weekends.
@@ -220,6 +222,8 @@ Comparatively, user tend to ride the bikes for longer duration in the summer mon
 1.	Create a member specific incentives for riding a bikes for longer duration.
 2.	Offer a discounted fee for members riding bikes on weekends, so that casual riders are motivated to join the membership.
 3.	Promote summer discount for members, as both members as well as casual riders tend use the bikes more during the summer months compared to winter months.
+
+More visual on Tablea [link](https://public.tableau.com/app/profile/damber.singh.biswa/viz/Book2_16768282135260/Dashboard1)
 
 ## Exporting cleaned data set for further analysis ##
 ```{r}
