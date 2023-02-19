@@ -1,0 +1,190 @@
+---
+title: "Google Capstone Project_Cyclistic Bike-Share"
+author: "Damber Singh Biswa"
+date: "2023-02-17"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Preparing data for analysis ##
+**Installing libraries in R **
+```{r}
+# tidyverse for data wrangling, lubridate for formatting date and ggplot2 for visualization.
+library(tidyverse) 
+library(lubridate) 
+library(ggplot2)
+library(dplyr)
+library(janitor)
+library(readr) # used for reading a csv file.
+```
+```{r}
+# Displaying and setting-up working directory
+getwd()
+setwd("C:\\Users\\dambe\\Desktop\\Portfolio Project")
+```
+```{r}
+# Loading dataset for combining
+m1<-read.csv("1_March_2022.csv", na="")
+m2<-read.csv("2_April_2022.csv",na="")
+m3<-read.csv("3_May_2022.csv",na="")
+m4<-read.csv("4_June_2022.csv",na="")
+m5<-read.csv("5_July_2022.csv",na="")
+m6<-read.csv("6_August_2022.csv",na="")
+m7<-read.csv("7_Sept_2022.csv",na="")
+m8<-read.csv("8_Oct_2022.csv",na="")
+m9<-read.csv("9_Nov_2022.csv",na="")
+m10<-read.csv("10_Dec_2022.csv",na="")
+m11<-read.csv("11_Jan_2023.csv",na="")
+m12<-read.csv("12_Feb_2023.csv",na="")
+```
+
+__Comparing column names of each files.__
+```{r}
+colnames(m1)
+colnames(m2)
+colnames(m3)
+colnames(m4)
+colnames(m5)
+colnames(m6)
+colnames(m7)
+colnames(m8)
+colnames(m9)
+colnames(m10)
+colnames(m11)
+colnames(m12)
+```
+
+** combining multiple data sets to a single large data set.**
+```{r}
+combined_trip <- bind_rows(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12);
+View(combined_trip)
+```
+## Processing data for analysis ##
+**Evaluating data for integrity**
+```{r}
+head(combined_trip)
+nrow(combined_trip)
+ncol(combined_trip)
+glimpse(combined_trip)
+```
+
+
+**Dropping any rows with NA/empty values**
+```{r}
+combined_trip2 <- remove_empty(combined_trip, c("rows", "cols"))%>%
+  drop_na()
+```
+**Inspecting the the cleaned data**
+```{r}
+glimpse(combined_trip2)
+str(combined_trip2)
+```
+
+**Adding columns date, month, day, year and hour of each ride**
+```{r}
+# https://www.statmethods.net/input/dates.html more on date formats in R found at that link
+combined_trip2$Date <- as.Date(combined_trip2$started_at)
+combined_trip2$Month <- format(as.Date(combined_trip2$Date), "%m")
+combined_trip2$Day <- format(as.Date(combined_trip2$Date), "%d")
+combined_trip2$Year <- format(as.Date(combined_trip2$Date), "%Y")
+combined_trip2$Day_of_Week <- format(as.Date(combined_trip2$Date), "%A")
+combined_trip2$Hour <- hour(combined_trip2$started_at)
+combined_trip2$Ride_Length <- difftime(combined_trip2$ended_at,combined_trip2$started_at,units = "min") #calculating ride_length in minutes
+```
+
+**Inspecting additional columns and structure of column**
+```{r}
+str(combined_trip2)
+```
+#removing unwanted columns from the data set
+```{r}
+combined_trip2 <- subset(combined_trip2, select = -c(started_at, ended_at,start_station_id, end_station_id,start_lat, start_lng,end_lat, end_lng))
+str(combined_trip2)
+```
+
+**Convert "ride_length" from factor to numeric for easy calculations**
+```{r}
+combined_trip2$Ride_Length <- as.numeric(as.character(combined_trip2$Ride_Length))
+is.numeric(combined_trip2$Ride_Length)
+str(combined_trip2)
+```
+
+**Inspecting and removing bad data **
+```{r}
+#Checking ride length less than 0
+nrow(subset(combined_trip2, Ride_Length<0))
+
+# Removing row with ride_length less than 0.
+combined_trip2 <- combined_trip2[!(combined_trip2$Ride_Length<0),]
+
+#Checking if any bicycles were used for test/by company for maintenance
+nrow(subset(combined_trip2,start_station_name == "HQ QR"))
+```
+
+## Descriptive Analysis ##
+*Descriptive analysis on ride_length (all figures in minutes) *
+```{r}
+mean(combined_trip2$Ride_Length)
+median(combined_trip2$Ride_Length)  #median ride length
+max(combined_trip2$Ride_Length) #max ride length
+min(combined_trip2$Ride_Length) # shortest ride length
+```
+
+**Compare members and casual users by aggregate**
+```{r}
+aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = mean)
+aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = median)
+aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = max)
+aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual, FUN = min)
+```
+**ordering days of week in sequence ** 
+```{r}
+combined_trip2$Day_of_Week <- ordered(combined_trip2$Day_of_Week, 
+                                       levels=c("Sunday", "Monday", "Tuesday", 
+                                                "Wednesday", "Thursday", "Friday", 
+                                                "Saturday")) 
+```
+
+
+**Average ride time by each day for members vs casual users**
+
+```{r}
+aggregate(combined_trip2$Ride_Length ~ combined_trip2$member_casual + combined_trip2$Day_of_Week, FUN = mean)
+```
+
+## Sharing /Visualization ##
+**Analyze ridership data by membership type and weekday**
+```{r}
+combined_trip2 %>%  
+  group_by(member_casual, Day_of_Week) %>% 
+  summarise(avg_trip_time_in_min = mean(Ride_Length)) %>%
+  ggplot(aes(x = Day_of_Week, y = avg_trip_time_in_min, fill = member_casual)) +
+  geom_col(width=0.5, position = position_dodge(width=0.5)) + 
+  labs(title ="Average trip duration by customer type Vs. Day of the week")
+```
+
+**Number of ride by day of week**
+```{r}
+combined_trip2 %>% 
+  group_by(rideable_type, Day_of_Week) %>% 
+  summarise(number_of_rides = n()
+            ,average_duration = mean(Ride_Length)) %>% 
+  arrange(rideable_type, Day_of_Week)  %>% 
+  ggplot(aes(x = Day_of_Week, y = number_of_rides, fill = rideable_type)) +
+  geom_col(position = "dodge") + 
+  labs(title = "Number of Rides by Day and Bike Type") + 
+  ylab("Number of Rides") + 
+  xlab("Day of Week")+geom_text(aes(label=number_of_rides))
+```
+
+
+## Exporting cleaned data set for further analysis##
+```{r}
+write.csv(combined_trip2,"Final_Cleaned_Trip_Data.csv", row.names = TRUE)
+
+``` 
