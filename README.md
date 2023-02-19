@@ -187,7 +187,22 @@ combined_trip2 %>%
   labs(title ="Average trip duration by customer type Vs. Day of the week")
 ```
 ![Ridership](https://user-images.githubusercontent.com/113871264/219969637-7d005012-5fd1-4516-b87e-9ef9898d9ae0.png)
+The graph depicts that the number of casual riders are more compared to members, the number of member riders remains constant throughout the week.  
 
+Number of ride by day of week
+```{r}
+combined_trip2 %>% 
+  group_by(rideable_type, Day_of_Week) %>% 
+  summarise(number_of_rides = n()
+            ,average_duration = mean(Ride_Length)) %>% 
+  arrange(rideable_type, Day_of_Week)  %>% 
+  ggplot(aes(x = Day_of_Week, y = number_of_rides, fill = rideable_type)) +
+  geom_col(position = "dodge") + 
+  labs(title = "Number of Rides by Day and Bike Type") + 
+  ylab("Number of Rides") + 
+  xlab("Day of Week")+geom_text(aes(label=number_of_rides))
+  ```
+  
 ## Exporting cleaned data set for further analysis ##
 ```{r}
 write.csv(combined_trip2,"Final_Cleaned_Trip_Data.csv", row.names = TRUE)
