@@ -186,6 +186,7 @@ combined_trip2 %>%
   geom_col(width=0.5, position = position_dodge(width=0.5)) + 
   labs(title ="Average trip duration by customer type Vs. Day of the week")
 ```
+[]()
 
 ## Exporting cleaned data set for further analysis ##
 ```{r}
