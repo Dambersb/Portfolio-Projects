@@ -186,7 +186,7 @@ combined_trip2 %>%
   geom_col(width=0.5, position = position_dodge(width=0.5)) + 
   labs(title ="Average trip duration by customer type Vs. Day of the week")
 ```
-![Ridership](https://user-images.githubusercontent.com/113871264/219969637-7d005012-5fd1-4516-b87e-9ef9898d9ae0.png)
+![Ridership](https://user-images.githubusercontent.com/113871264/219969637-7d005012-5fd1-4516-b87e-9ef9898d9ae0.png)  
 The graph depicts that the number of casual riders are more compared to members, the number of member riders remains constant throughout the week.  
 
 Number of ride by day of week
@@ -202,7 +202,10 @@ combined_trip2 %>%
   ylab("Number of Rides") + 
   xlab("Day of Week")+geom_text(aes(label=number_of_rides))
   ```
-  ![NumberOfRideByType](https://user-images.githubusercontent.com/113871264/219970952-3e39e5fa-95d1-4387-b68a-2e1cf6ac95c3.png)
+  ![NumberOfRideByType](https://user-images.githubusercontent.com/113871264/219970952-3e39e5fa-95d1-4387-b68a-2e1cf6ac95c3.png)  
+  As per this analysis, maximum of the riders prefer using using classic or eletric bikes compared to docked bikes.
+  
+  
 ## Exporting cleaned data set for further analysis ##
 ```{r}
 write.csv(combined_trip2,"Final_Cleaned_Trip_Data.csv", row.names = TRUE)
