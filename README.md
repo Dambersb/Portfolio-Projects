@@ -202,7 +202,7 @@ combined_trip2 %>%
   ylab("Number of Rides") + 
   xlab("Day of Week")+geom_text(aes(label=number_of_rides))
   ```
-  
+  ![NumberOfRideByType](https://user-images.githubusercontent.com/113871264/219970952-3e39e5fa-95d1-4387-b68a-2e1cf6ac95c3.png)
 ## Exporting cleaned data set for further analysis ##
 ```{r}
 write.csv(combined_trip2,"Final_Cleaned_Trip_Data.csv", row.names = TRUE)
