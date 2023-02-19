@@ -218,7 +218,7 @@ Comparatively, user tend to ride the bikes for longer duration in the summer mon
 2.	Most riders prefers using classic bikes and electric bikes rather than docked bikes.
 3.	Generally, casual users us the bikes for longer duration compared to members.
 
-## Recommendation:##
+## Recommendation: ##
 1.	Create a member specific incentives for riding a bikes for longer duration.
 2.	Offer a discounted fee for members riding bikes on weekends, so that casual riders are motivated to join the membership.
 3.	Promote summer discount for members, as both members as well as casual riders tend use the bikes more during the summer months compared to winter months.
